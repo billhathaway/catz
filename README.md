@@ -33,3 +33,9 @@ And then used catz to view the file, you would see the times have been re-writte
     2016-01-17 20:44:35,883 INFO path=/ method=GET status=200
     2016-01-17 22:23:19,967 INFO path=/users method=POST status=200
     2016-01-18 03:04:26,076 INFO path=/instances method=GET status=200
+
+If you are working with a log using a different time format, such as nginx, which uses default timestamps in a pattern like '11/Jan/2014:18:00:00', you could use:  
+
+    catz -t "%d/%b/%Y:%H" access.log
+
+It typically isn't necessary to have the minutes/seconds/milliseconds searched and replaced since those values would stay the same.
