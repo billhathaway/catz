@@ -62,11 +62,11 @@ var strfmtimeRE = map[byte]string{
 	'%': `%`,
 }
 
-// strfimeToGo is given a strftime() format and builds a regex for parsing
+// strftimeToRE is given a strftime() format and builds a regex for parsing
 // %Y-%m-%d would turn into
 // \d{4}-\d{2}-\d{2}
 // TODO: check for completeness
-func (c *controller) strfimeToRE(format string) error {
+func (c *controller) strftimeToRE(format string) error {
 	regexBuf := &bytes.Buffer{}
 	var inPercent bool
 	for i := range format {
@@ -208,7 +208,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "ERROR time format [%s] had problem converting to go format%s\n", *timeFormat, err)
 		os.Exit(1)
 	}
-	err = c.strfimeToRE(*timeFormat)
+	err = c.strftimeToRE(*timeFormat)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "ERROR time format [%s] had problem to regex %s\n", *timeFormat, err)
 		os.Exit(1)
